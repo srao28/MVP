@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Expense Manager</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <div class="container">
+        <h1>Expense Manager</h1>
+
+        <a href="/add" class="btn-add">+ Add Expense</a>
+
+        {% if expenses %}
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Amount</th>
+                    <th>Category</th>
+                    <th>Description</th>
+                    <th>Date</th>
+                </tr>
+                {% for expense in expenses %}
+                <tr>
+                    <td>{{ expense.id }}</td>
+                    <td>${{ expense.amount }}</td>
+                    <td>{{ expense.category }}</td>
+                    <td>{{ expense.description }}</td>
+                    <td>{{ expense.date }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p class="empty">No expenses yet.</p>
+        {% endif %}
+    </div>
+</body>
+
+</html>
